@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  bmc_csv:
+    build:
+      context: .
+      dockerfile: Dockerfile.csv
+    container_name: bmc_csv
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+    environment:
+      - USE_SQL=false
+    restart: unless-stopped
+
+  bmc_sqlite:
+    build:
+      context: .
+      dockerfile: Dockerfile.sqlite
+    container_name: bmc_sqlite
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./data:/data
+    environment:
+      - USE_SQL=true
+    restart: unless-stopped
