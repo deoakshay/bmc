@@ -1,0 +1,11 @@
+csv:
+  enabled: true
+  image: bmc-csv
+  tag: latest
+  port: 8080
+
+sqlite:
+  enabled: true
+  image: bmc-sqlite
+  tag: latest
+  port: 8080

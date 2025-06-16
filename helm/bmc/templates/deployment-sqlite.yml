@@ -1,0 +1,24 @@
+{{- if .Values.sqlite.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bmc-sqlite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bmc-sqlite
+  template:
+    metadata:
+      labels:
+        app: bmc-sqlite
+    spec:
+      containers:
+        - name: bmc-sqlite
+          image: "{{ .Values.sqlite.image }}:{{ .Values.sqlite.tag }}"
+          ports:
+            - containerPort: {{ .Values.sqlite.port }}
+          env:
+            - name: USE_SQL
+              value: "true"
+{{- end }}
