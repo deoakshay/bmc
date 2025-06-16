@@ -12,16 +12,19 @@ import (
 )
 
 func main() {
-	var store models.PassengersDatabase
+	var store models.PassengersDB
 	if os.Getenv("USE_SQL") == "true" {
-		// Replace with SQLite logic here later
-		log.Fatal("SQLite not implemented yet")
+		db, err := models.NewSQLitePassengerDatabase("data/titanic.db", "data/titanic.csv")
+		if err != nil {
+			log.Fatal("Error loading SQLite database:", err)
+		}
+		store = db
 	} else {
 		db, err := models.NewPassengerDatabaseFromCSV("data/titanic.csv")
 		if err != nil {
 			log.Fatalf("Error loading CSV: %v", err)
 		}
-		store = *db
+		store = db
 	}
 
 	controllers.InitController(store)

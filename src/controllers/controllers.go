@@ -4,10 +4,10 @@ import (
 	"bmc/src/models"
 )
 
-var store *models.PassengersDatabase
+var store models.PassengersDB
 
-func InitController(passengers models.PassengersDatabase) {
-	store = &passengers
+func InitController(passengers models.PassengersDB) {
+	store = passengers
 }
 
 func GetAllPassengers() (models.Passengers, error) {
