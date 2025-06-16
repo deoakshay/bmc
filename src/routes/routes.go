@@ -1,19 +1,16 @@
 package routes
 
 import (
- "net/http"
+	"bmc/src/handlers"
 
- "github.com/gorilla/mux" // One of the popular routing frameworks
+	"github.com/gorilla/mux" // One of the popular routing frameworks
 )
 
-func SetupRoutes() *mux.Router {
- router := mux.NewRouter()
+func RegisterRoutes(router *mux.Router) {
 
- router.HandleFunc("/api/getPassengers", GetUsers).Methods("GET")
- router.HandleFunc("/api/getPassengers/{id}", GetUserByID).Methods("GET")
- router.HandleFunc("/api/getPassengersByAttributes/{id}",GetPassengerByAttributes).Methods("GET")
- router.HandleFunc("/api/getPassengersHistogram/{id}", GetHistogram).Methods("GET")
+	router.HandleFunc("/api/getPassengers", handlers.GetPassengersHandler).Methods("GET")
+	router.HandleFunc("/api/getPassengers/{id}", handlers.GetPassengerByID).Methods("GET")
+	router.HandleFunc("/api/getPassengersByAttributes/{id}", handlers.GetPassengerByAttributes).Methods("GET")
+	router.HandleFunc("/api/getPassengersHistogram", handlers.GetHistogram).Methods("GET")
 
-
- return router
 }

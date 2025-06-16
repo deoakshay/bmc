@@ -1,8 +1,14 @@
-module bmc/passenger
+module bmc
 
 go 1.23.0
 
 toolchain go1.23.10
+
+require (
+	github.com/gocarina/gocsv v0.0.0-20240520201108-78e41c74b4b1
+	github.com/gorilla/mux v1.8.1
+	gonum.org/v1/plot v0.16.0
+)
 
 require (
 	codeberg.org/go-fonts/liberation v0.5.0 // indirect
@@ -11,12 +17,8 @@ require (
 	git.sr.ht/~sbinet/gg v0.6.0 // indirect
 	github.com/ajstarks/svgo v0.0.0-20211024235047-1546f124cd8b // indirect
 	github.com/campoy/embedmd v1.0.0 // indirect
-	github.com/gocarina/gocsv v0.0.0-20240520201108-78e41c74b4b1 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	golang.org/x/image v0.25.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
-	gonum.org/v1/plot v0.16.0 // indirect
-	rsc.io/pdf v0.1.1 // indirect
 )
