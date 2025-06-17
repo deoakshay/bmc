@@ -1,0 +1,195 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/histogram": {
+            "get": {
+                "description": "Generates and retrieves a histogram of passengers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "Passengers"
+                ],
+                "summary": "Get histogram of passengers",
+                "responses": {
+                    "200": {
+                        "description": "Histogram image in HTML format",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/passenger/{id}/attributes": {
+            "get": {
+                "description": "Retrieves a passenger by their ID and specified attributes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Passengers"
+                ],
+                "summary": "Get passenger by attributes",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Passenger ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Comma-separated list of attributes e.g attributes=Name,Age",
+                        "name": "attributes",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Passenger"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID or attributes",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/passengers": {
+            "get": {
+                "description": "Retrieves all passengers from the database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Passengers"
+                ],
+                "summary": "Get all passengers",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Passenger"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/passengers/{id}": {
+            "get": {
+                "description": "Retrieves a passenger by their ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Passengers"
+                ],
+                "summary": "Get passenger by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Passenger ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Passenger"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Passenger": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "number"
+                },
+                "cabin": {
+                    "type": "string"
+                },
+                "embarked": {
+                    "type": "string"
+                },
+                "fare": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parch": {
+                    "type": "integer"
+                },
+                "passenger_id": {
+                    "type": "integer"
+                },
+                "pclass": {
+                    "type": "integer"
+                },
+                "sex": {
+                    "type": "string"
+                },
+                "sibsp": {
+                    "type": "integer"
+                },
+                "survived": {
+                    "type": "integer"
+                },
+                "ticket": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
