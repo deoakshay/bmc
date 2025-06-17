@@ -1,0 +1,127 @@
+definitions:
+  models.Passenger:
+    properties:
+      age:
+        type: number
+      cabin:
+        type: string
+      embarked:
+        type: string
+      fare:
+        type: number
+      name:
+        type: string
+      parch:
+        type: integer
+      passenger_id:
+        type: integer
+      pclass:
+        type: integer
+      sex:
+        type: string
+      sibsp:
+        type: integer
+      survived:
+        type: integer
+      ticket:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/histogram:
+    get:
+      consumes:
+      - application/json
+      description: Generates and retrieves a histogram of passengers
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Histogram image in HTML format
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get histogram of passengers
+      tags:
+      - Passengers
+  /api/passenger/{id}/attributes:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a passenger by their ID and specified attributes
+      parameters:
+      - description: Passenger ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Comma-separated list of attributes e.g attributes=Name,Age
+        in: query
+        name: attributes
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Passenger'
+        "400":
+          description: Invalid ID or attributes
+          schema:
+            type: string
+      summary: Get passenger by attributes
+      tags:
+      - Passengers
+  /api/passengers:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves all passengers from the database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Passenger'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all passengers
+      tags:
+      - Passengers
+  /api/passengers/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a passenger by their ID
+      parameters:
+      - description: Passenger ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Passenger'
+        "400":
+          description: Invalid ID
+          schema:
+            type: string
+      summary: Get passenger by ID
+      tags:
+      - Passengers
+swagger: "2.0"

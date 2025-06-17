@@ -8,7 +8,10 @@ import (
 	"net/http"
 	"os"
 
+	_ "bmc/docs"
+
 	"github.com/gorilla/mux"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func main() {
@@ -29,7 +32,10 @@ func main() {
 
 	controllers.InitController(store)
 	r := mux.NewRouter()
-	routes.RegisterRoutes(r)
+	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
+	api := r.PathPrefix("/").Subrouter()
+	routes.RegisterRoutes(api)
 
 	port := os.Getenv("PORT")
 	if port == "" {
