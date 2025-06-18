@@ -1,0 +1,4 @@
+apiVersion: v2
+name: bmc
+description: A Helm chart for BMC CSV and SQLite backends
+version: 0.1.0
